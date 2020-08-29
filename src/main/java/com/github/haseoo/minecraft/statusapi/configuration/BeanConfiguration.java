@@ -1,5 +1,6 @@
 package com.github.haseoo.minecraft.statusapi.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.haseoo.minecraft.statusapi.utils.helpers.ForgePing;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,5 +22,10 @@ public class BeanConfiguration {
     @Bean
     public ForgePing forgePing() throws UnknownHostException {
         return new ForgePing(new InetSocketAddress(InetAddress.getByName(host), port), timeout);
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 }
