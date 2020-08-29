@@ -124,7 +124,7 @@ public class ForgePing {
         }
 
         if (postJobResponse != POSTJOB_PACKET_ID) {
-            throw new IOException();
+            throw new InvalidPacketIdException();
         }
     }
 }
