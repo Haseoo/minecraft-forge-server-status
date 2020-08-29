@@ -30,23 +30,20 @@ public class StatusController {
     private String serverName;
 
     @GetMapping
-    public ResponseEntity<AbstractResponse> getServerInfo() {
+    public ResponseEntity<AbstractResponse> getServerInfo() throws IOException {
         return getResponse(false);
     }
 
     @GetMapping("/fixed")
-    public ResponseEntity<AbstractResponse> getServerInfoWithNormalizedFixedModList() {
+    public ResponseEntity<AbstractResponse> getServerInfoWithNormalizedFixedModList() throws IOException {
         return getResponse(true);
     }
 
-    private ResponseEntity<AbstractResponse> getResponse(boolean fix) {
+    private ResponseEntity<AbstractResponse> getResponse(boolean fix) throws IOException {
         try {
             return ResponseEntity.ok(ServerInfoView.from(serverName, serverStatusService.getServerStatus(fix)));
         } catch (UnknownHostException | SocketTimeoutException | ConnectException | MinecraftEntityNotFound e) {
             return ResponseEntity.ok(ErrorView.formException(e));
-        } catch (IOException e) {
-            log.error(EXCEPTION_LOG_MESSAGE, e);
-            return ResponseEntity.ok(ErrorView.defaultInstance());
         }
     }
 }
