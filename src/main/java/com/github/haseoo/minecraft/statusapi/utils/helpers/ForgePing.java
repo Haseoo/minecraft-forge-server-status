@@ -32,7 +32,6 @@ public class ForgePing {
 
                 int pingResponseId = doPing(dataOutputStream, dataInputStream);
                 verifyPingResponse(pingResponseId);
-
                 String pingResponse = getPingResponse(dataInputStream);
 
                 int postJobResponseId = doPostJob(dataOutputStream, dataInputStream);
@@ -41,69 +40,6 @@ public class ForgePing {
                 return pingResponse;
             }
         }
-    }
-
-    private String getPingResponse(DataInputStream dataInputStream) throws IOException {
-        int responseLength = getJsonResponseLength(dataInputStream);
-        verifyJsonResponseLength(responseLength);
-        return readJsonResponse(dataInputStream, responseLength);
-    }
-
-    private void verifyPostJobResponse(int postJobResponse) throws IOException {
-        if (postJobResponse == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
-            throw new EOFException();
-        }
-
-        if (postJobResponse != POSTJOB_PACKET_ID) {
-            throw new IOException();
-        }
-    }
-
-    private void verifyJsonResponseLength(int responseLength) throws IOException {
-        if (responseLength == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
-            throw new EOFException();
-        }
-        if (isResponseJsonStringEmpty(responseLength)) {
-            throw new InvalidJsonStringLength();
-        }
-    }
-
-    private void verifyPingResponse(int responseId) throws IOException {
-        if (responseId == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
-            throw new EOFException();
-        }
-        if (responseId != VALID_PING_RESPONSE) {
-            throw new InvalidPacketIdException();
-        }
-    }
-
-    private int doPostJob(DataOutputStream dataOutputStream, DataInputStream dataInputStream) throws IOException {
-        dataOutputStream.writeByte(POSTJOB_PACKET_SIZE);
-        dataOutputStream.writeByte(POSTJOB_PACKET_ID);
-        dataOutputStream.writeLong(System.currentTimeMillis());
-        readIntegerValue(dataInputStream); //ignore the value- known packet size
-        return readIntegerValue(dataInputStream);
-    }
-
-    private String readJsonResponse(DataInputStream dataInputStream, int responseLength) throws IOException {
-        var responseBytes = new byte[responseLength];
-        dataInputStream.readFully(responseBytes);
-        return new String(responseBytes);
-    }
-
-    private boolean isResponseJsonStringEmpty(int length) {
-        return length == 0;
-    }
-
-    private int getJsonResponseLength(DataInputStream dataInputStream) throws IOException {
-        return readIntegerValue(dataInputStream);
-    }
-
-    private int doPing(DataOutputStream dataOutputStream, DataInputStream dataInputStream) throws IOException {
-        dataOutputStream.writeByte(PING_PACKET_SIZE);
-        dataOutputStream.writeByte(PING_PACKET_ID);
-        readIntegerValue(dataInputStream); //ignore the value- known packet size
-        return readIntegerValue(dataInputStream);
     }
 
     private void doHandshake(DataOutputStream dataOutputStream) throws IOException {
@@ -127,5 +63,68 @@ public class ForgePing {
 
         writeIntValue(handshakeData, HANDSHAKE_STATE);
         return handshakeByteBuffer.toByteArray();
+    }
+
+    private int doPing(DataOutputStream dataOutputStream, DataInputStream dataInputStream) throws IOException {
+        dataOutputStream.writeByte(PING_PACKET_SIZE);
+        dataOutputStream.writeByte(PING_PACKET_ID);
+        readIntegerValue(dataInputStream); //ignore the value- known packet size
+        return readIntegerValue(dataInputStream);
+    }
+
+    private void verifyPingResponse(int responseId) throws IOException {
+        if (responseId == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
+            throw new EOFException();
+        }
+        if (responseId != VALID_PING_RESPONSE) {
+            throw new InvalidPacketIdException();
+        }
+    }
+
+    private String getPingResponse(DataInputStream dataInputStream) throws IOException {
+        int responseLength = getJsonResponseLength(dataInputStream);
+        verifyJsonResponseLength(responseLength);
+        return readJsonResponse(dataInputStream, responseLength);
+    }
+
+    private int getJsonResponseLength(DataInputStream dataInputStream) throws IOException {
+        return readIntegerValue(dataInputStream);
+    }
+
+    private void verifyJsonResponseLength(int responseLength) throws IOException {
+        if (responseLength == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
+            throw new EOFException();
+        }
+        if (isResponseJsonStringEmpty(responseLength)) {
+            throw new InvalidJsonStringLength();
+        }
+    }
+
+    private boolean isResponseJsonStringEmpty(int length) {
+        return length == 0;
+    }
+
+    private String readJsonResponse(DataInputStream dataInputStream, int responseLength) throws IOException {
+        var responseBytes = new byte[responseLength];
+        dataInputStream.readFully(responseBytes);
+        return new String(responseBytes);
+    }
+
+    private int doPostJob(DataOutputStream dataOutputStream, DataInputStream dataInputStream) throws IOException {
+        dataOutputStream.writeByte(POSTJOB_PACKET_SIZE);
+        dataOutputStream.writeByte(POSTJOB_PACKET_ID);
+        dataOutputStream.writeLong(System.currentTimeMillis());
+        readIntegerValue(dataInputStream); //ignore the value- known packet size
+        return readIntegerValue(dataInputStream);
+    }
+
+    private void verifyPostJobResponse(int postJobResponse) throws IOException {
+        if (postJobResponse == PREMATURE_END_OF_STREAM_RESPONSE_VALUE) {
+            throw new EOFException();
+        }
+
+        if (postJobResponse != POSTJOB_PACKET_ID) {
+            throw new IOException();
+        }
     }
 }
