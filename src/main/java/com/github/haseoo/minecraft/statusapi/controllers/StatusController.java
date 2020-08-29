@@ -1,7 +1,8 @@
 package com.github.haseoo.minecraft.statusapi.controllers;
 
+import com.github.haseoo.minecraft.statusapi.exceptions.MinecraftEntityNotFound;
 import com.github.haseoo.minecraft.statusapi.models.PingResponse;
-import com.github.haseoo.minecraft.statusapi.repositories.ServerStatusRepositoryImpl;
+import com.github.haseoo.minecraft.statusapi.services.ServerStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,15 @@ import java.io.IOException;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class StatusController {
-    private final ServerStatusRepositoryImpl serverStatusRepository;
+    private final ServerStatusService serverStatusService;
 
     @GetMapping
-    public ResponseEntity<PingResponse> test() throws IOException {
-        return ResponseEntity.ok(serverStatusRepository.fetchServerInfo());
+    public ResponseEntity<PingResponse> getServerInfo() throws IOException, MinecraftEntityNotFound {
+        return ResponseEntity.ok(serverStatusService.getServerStatus(false));
+    }
+
+    @GetMapping("/fixed")
+    public ResponseEntity<PingResponse> getServerInfoWithNormalizedFixedModList() throws IOException, MinecraftEntityNotFound {
+        return ResponseEntity.ok(serverStatusService.getServerStatus(true));
     }
 }
