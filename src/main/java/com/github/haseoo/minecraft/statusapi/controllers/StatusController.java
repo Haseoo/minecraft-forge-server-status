@@ -21,7 +21,6 @@ import java.net.UnknownHostException;
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
-@Slf4j
 public class StatusController {
     private final ServerStatusService serverStatusService;
     @Value("${minecraftserver.configuration.host}")
