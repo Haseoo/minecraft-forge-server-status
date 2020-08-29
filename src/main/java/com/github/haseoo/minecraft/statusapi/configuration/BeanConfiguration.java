@@ -5,6 +5,8 @@ import com.github.haseoo.minecraft.statusapi.utils.helpers.ForgePing;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -18,6 +20,8 @@ public class BeanConfiguration {
     private String host;
     @Value("${minecraftserver.configuration.port}")
     private int port;
+    @Value("${web.config.cors.allowedorigin}")
+    private String allowedOrigin;
 
     @Bean
     public ForgePing forgePing() throws UnknownHostException {
@@ -27,5 +31,15 @@ public class BeanConfiguration {
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/*").allowedOrigins(allowedOrigin);
+            }
+        };
     }
 }
