@@ -18,8 +18,6 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-import static com.github.haseoo.minecraft.statusapi.utils.Constants.EXCEPTION_LOG_MESSAGE;
-
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
