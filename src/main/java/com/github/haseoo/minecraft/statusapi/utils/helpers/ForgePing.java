@@ -1,4 +1,4 @@
-package com.github.haseoo.minecraft.statusapi.utils.helper;
+package com.github.haseoo.minecraft.statusapi.utils.helpers;
 
 import com.github.haseoo.minecraft.statusapi.exceptions.InvalidJsonStringLength;
 import com.github.haseoo.minecraft.statusapi.exceptions.InvalidPacketIdException;
