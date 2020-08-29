@@ -1,6 +1,5 @@
 package com.github.haseoo.minecraft.statusapi.configuration;
 
-import com.github.haseoo.minecraft.statusapi.utils.Constants;
 import com.github.haseoo.minecraft.statusapi.views.ErrorView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
