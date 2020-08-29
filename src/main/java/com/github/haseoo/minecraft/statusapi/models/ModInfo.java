@@ -8,8 +8,7 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ModInfo {
     @JsonProperty("modId")
-    public String id;
+    private String id;
     @JsonProperty("modmarker")
-    public String version;
-
+    private String version;
 }

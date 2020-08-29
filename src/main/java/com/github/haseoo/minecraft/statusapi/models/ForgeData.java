@@ -11,10 +11,9 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ForgeData {
     @JsonProperty("channels")
-    public List<ResourceInfo> resources = new ArrayList<>();
+    private List<ResourceInfo> resources = new ArrayList<>();
     @JsonProperty("mods")
-    public List<ModInfo> mods = new ArrayList<>();
+    private List<ModInfo> mods = new ArrayList<>();
     @JsonProperty("fmlNetworkVersion")
-    public String fmlNetworkVersion;
-
+    private String fmlNetworkVersion;
 }

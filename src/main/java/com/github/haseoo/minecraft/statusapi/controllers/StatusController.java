@@ -1,9 +1,10 @@
 package com.github.haseoo.minecraft.statusapi.controllers;
 
 import com.github.haseoo.minecraft.statusapi.exceptions.MinecraftEntityNotFound;
-import com.github.haseoo.minecraft.statusapi.models.PingResponse;
 import com.github.haseoo.minecraft.statusapi.services.ServerStatusService;
+import com.github.haseoo.minecraft.statusapi.views.ServerInfoView;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +17,16 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class StatusController {
     private final ServerStatusService serverStatusService;
+    @Value("${minecraftserver.configuration.host}")
+    private String serverName;
 
     @GetMapping
-    public ResponseEntity<PingResponse> getServerInfo() throws IOException, MinecraftEntityNotFound {
-        return ResponseEntity.ok(serverStatusService.getServerStatus(false));
+    public ResponseEntity<ServerInfoView> getServerInfo() throws IOException, MinecraftEntityNotFound {
+        return ResponseEntity.ok(ServerInfoView.from(serverName, serverStatusService.getServerStatus(false)));
     }
 
     @GetMapping("/fixed")
-    public ResponseEntity<PingResponse> getServerInfoWithNormalizedFixedModList() throws IOException, MinecraftEntityNotFound {
-        return ResponseEntity.ok(serverStatusService.getServerStatus(true));
+    public ResponseEntity<ServerInfoView> getServerInfoWithNormalizedFixedModList() throws IOException, MinecraftEntityNotFound {
+        return ResponseEntity.ok(ServerInfoView.from(serverName, serverStatusService.getServerStatus(true)));
     }
 }

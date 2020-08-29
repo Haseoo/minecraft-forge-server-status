@@ -8,14 +8,13 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PingResponse {
     @JsonProperty("description")
-    public Description description;
+    private Description description;
     @JsonProperty("players")
-    public PlayersInfo playersInfo;
+    private PlayersInfo playersInfo;
     @JsonProperty("version")
-    public Version version;
+    private VersionInfo versionInfo;
     @JsonProperty("favicon")
-    public String favicon;
+    private String favicon;
     @JsonProperty("forgeData")
-    public ForgeData forgeData;
-
+    private ForgeData forgeData;
 }

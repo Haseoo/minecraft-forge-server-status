@@ -35,7 +35,7 @@ public class ServerStatusServiceImpl implements ServerStatusService {
     private ModInfo getMinecraftEntity(List<ModInfo> modsList) throws MinecraftEntityNotFound {
         ModInfo minecraft = null;
         for (var mod : modsList) {
-            if (mod.id.equals(MINECRAFT_ENTITY_ID)) {
+            if (mod.getId().equals(MINECRAFT_ENTITY_ID)) {
                 minecraft = mod;
             }
         }
@@ -47,9 +47,9 @@ public class ServerStatusServiceImpl implements ServerStatusService {
 
     private void replaceInvalidModVersions(List<ModInfo> modsList, ModInfo minecraft) {
         for (var mod : modsList) {
-            if (mod.version.equals(NO_MOD_VERSION_STRING_INDICATOR_1) ||
-                    mod.version.equals(NO_MOD_VERSION_STRING_INDICATOR_2)) {
-                mod.version = String.format(FIX_MOD_VERSION_FORMAT, minecraft.version);
+            if (mod.getVersion().equals(NO_MOD_VERSION_STRING_INDICATOR_1) ||
+                    mod.getVersion().equals(NO_MOD_VERSION_STRING_INDICATOR_2)) {
+                mod.setVersion(String.format(FIX_MOD_VERSION_FORMAT, minecraft.getVersion()));
             }
         }
     }

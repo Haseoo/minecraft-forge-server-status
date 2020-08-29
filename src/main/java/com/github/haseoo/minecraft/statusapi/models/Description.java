@@ -8,6 +8,5 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Description {
     @JsonProperty("text")
-    public String descriptionText;
-
+    private String descriptionText;
 }

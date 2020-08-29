@@ -6,10 +6,9 @@ import lombok.Data;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class Version {
+public class VersionInfo {
     @JsonProperty("name")
-    public String name;
+    private String version;
     @JsonProperty("protocol")
-    public Integer protocol;
-
+    private Integer protocol;
 }

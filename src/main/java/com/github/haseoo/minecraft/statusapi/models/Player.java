@@ -9,10 +9,8 @@ import java.util.UUID;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Player {
-
     @JsonProperty("id")
-    public UUID id;
+    private UUID id;
     @JsonProperty("name")
-    public String nickname;
-
+    private String nickname;
 }

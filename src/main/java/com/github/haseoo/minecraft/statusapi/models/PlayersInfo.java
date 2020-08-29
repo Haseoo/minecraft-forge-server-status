@@ -11,10 +11,9 @@ import java.util.List;
 @Data
 public class PlayersInfo {
     @JsonProperty("max")
-    public Integer max;
+    private Integer max;
     @JsonProperty("online")
-    public Integer online;
+    private Integer online;
     @JsonProperty("sample")
-    public List<Player> players = new ArrayList<>();
-
+    private List<Player> players = new ArrayList<>();
 }

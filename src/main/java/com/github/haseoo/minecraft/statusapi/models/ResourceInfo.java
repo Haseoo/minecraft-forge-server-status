@@ -8,10 +8,9 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResourceInfo {
     @JsonProperty("res")
-    public String name;
+    private String name;
     @JsonProperty("version")
-    public String version;
+    private String version;
     @JsonProperty("required")
-    public Boolean required;
-
+    private Boolean required;
 }
