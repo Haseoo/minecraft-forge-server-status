@@ -8,6 +8,14 @@ main  {
     font-size: 11pt;
 }
 
+.acrylic {
+    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
+    backdrop-filter: blur(5px);
+    background-image: url("acryllicBg.png");
+    background-repeat: repeat;
+    background-color: rgba(255, 255,255, 0.5);
+}
+
 div.top {
     display: flex;
     justify-content: flex-start;
@@ -44,12 +52,9 @@ div.row {
 }
 
 div.title_cell, div.value_cell {
-    background-color: rgba(255, 255,255, 0.5);
     display:flex;
     width: 50%;
     align-items:center;
-    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
-    backdrop-filter: blur(5px);
 }
 
 div.title_cell {
@@ -77,9 +82,6 @@ div.mod_row {
     padding: 5px;
     width: 100%;
     box-sizing: border-box;
-    background-color: rgba(255, 255,255, 0.5);
-    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
-    backdrop-filter: blur(5px);
 }
 
 div.button_wrapper {
