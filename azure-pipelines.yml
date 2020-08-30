@@ -15,7 +15,7 @@ steps:
     SonarQube: 'SonarCubeHome'
     scannerMode: 'Other'
     extraProperties: |
-      sonar.sources=src/web
+      sonar.sources=src
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
