@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft status</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadStatus(true, 'http://localhost:8080/fixed')">
+    <main>
+        <div class="top">
+            <div class="icon_container">
+                <img id="icon" alt="server icon">
+            </div>
+            <div class="name_container">
+                <span style="text-align: center;" id="server_name"></span>
+            </div>
+        </div>
+
+        <div class="table">
+            <div class="row" id="row_status">
+                <div class="title_cell" id="title_cel_status">
+                    <span class="title_text" id="title_text_status"></span>
+                </div>
+                <div class="value_cell" id="value_cell_status">
+                    <span class="value_text" id="value_text_status"></span>
+                </div>
+            </div>
+
+	    <div class="row" id="row_desc">
+                <div class="title_cell" id="title_cel_desc">
+                    <span class="title_text" id="title_text_desc"></span>
+                </div>
+                <div class="value_cell" id="value_cell_desc">
+                    <span class="value_text" id="value_text_desc"></span>
+                </div>
+            </div>
+
+            <div class="row" id="row_version">
+                <div class="title_cell" id="title_cel_version">
+                    <span class="title_text" id="title_text_version"></span>
+                </div>
+                <div class="value_cell" id="value_cell_version">
+                    <span class="value_text" id="value_text_version"></span>
+                </div>
+            </div>
+
+            <div class="row" id="row_players_active">
+                <div class="title_cell" id="title_cel_players_active">
+                    <span class="title_text" id="title_text_players_active"></span>
+                </div>
+                <div class="value_cell" id="value_cell_players_active">
+                    <span class="value_text" id="value_text_players_active"></span>
+                </div>
+            </div>
+
+            <div class="row" id="row_players_active_nicks">
+                <div class="title_cell" id="title_cel_players_active_nicks">
+                    <span class="title_text" id="title_text_players_active_nicks"></span>
+                </div>
+                <div class="value_cell" id="value_cell_players_active_nicks">
+                    <span class="value_text" id="value_text_players_active_nicks"></span>
+                </div>
+            </div>
+
+            <div class="mod_row" id='mod_row'>
+                <span class="title_text">Mod list:</span>
+                <div class="button_wrapper" id="mods_btn_wrapper">
+                    <button id="mods_btn">Click to see mod list</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="script.js"></script>    
+</body>
+</html>
+

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+main  {
+    max-width: 400px;
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    font-family: 'Abel', sans-serif;
+    font-size: 11pt;
+}
+
+div.top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+div.icon_container{
+    margin: 5px;
+    width: fit-content;
+    height: fit-content;
+}
+
+div.table {
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+div.name_container {
+    word-wrap: break-word;
+    width: 100%;
+    font-size: 24pt;
+    color: rgb(255, 255, 182);
+    text-shadow: 2px 2px 5px rgb(29, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row {
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+div.title_cell, div.value_cell {
+    background-color: rgba(255, 255,255, 0.5);
+    display:flex;
+    width: 50%;
+    align-items:center;
+    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
+    backdrop-filter: blur(5px);
+}
+
+div.title_cell {
+    justify-content:flex-end;
+    margin-right: 3px;
+    padding-right: 5px;
+    text-align:right;
+}
+
+div.value_cell {
+    justify-content:flex-start;
+    font-weight: bold;
+    margin-left: 3px;
+    padding-left: 5px;
+    text-align: left;
+}
+
+div#value_cell_players_active_nicks {
+    word-break : break-word;
+    overflow: hidden;
+}
+
+div.mod_row {
+    margin: 10px 0 5px 0;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(255, 255,255, 0.5);
+    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
+    backdrop-filter: blur(5px);
+}
+
+div.button_wrapper {
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div > button {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border: 1px solid #BFC0C0;
+    box-sizing: content-box;
+}
+
+div > button:hover {
+    box-shadow: 4px 9px 35px -5px rgba(0,0,0,0.75);
+}
+
+div > button:focus {
+    background-color: rgba(255, 255, 255, 0.75);
+    outline:none;
+    filter: blur(0.5px);
+}
+
+div.mod_row ul {
+    margin: 0;
+    padding: 0.5em;
+}
+
+div.mod_row li {
+    list-style: none inside none;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: rgba(128,128,128,0.70);
+    padding: 0.3em 0 0.3em 1em;
+}
+
+div.mod_row li:hover {
+    background-color: rgba(255, 255,255, 0.35);
+}
+
+div.mod_row span {
+    font-size: 13pt;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
