@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-main  {
+
+main {
     max-width: 400px;
     background-image: url('bg.png');
     background-repeat: no-repeat;
@@ -8,12 +9,16 @@ main  {
     font-size: 11pt;
 }
 
+img {
+    box-shadow: 7px 11px 15px -6px rgba(0, 0, 0, 0.75);
+}
+
 .acrylic {
-    box-shadow: 7px 11px 15px -6px rgba(0,0,0,0.75);
+    box-shadow: 7px 11px 15px -6px rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(5px);
     background-image: url("acryllicBg.png");
     background-repeat: repeat;
-    background-color: rgba(255, 255,255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 div.top {
@@ -21,8 +26,8 @@ div.top {
     justify-content: flex-start;
 }
 
-div.icon_container{
-    margin: 5px;
+div.icon_container {
+    margin: 7px;
     width: fit-content;
     height: fit-content;
 }
@@ -52,20 +57,20 @@ div.row {
 }
 
 div.title_cell, div.value_cell {
-    display:flex;
+    display: flex;
     width: 50%;
-    align-items:center;
+    align-items: center;
 }
 
 div.title_cell {
-    justify-content:flex-end;
+    justify-content: flex-end;
     margin-right: 3px;
     padding-right: 5px;
-    text-align:right;
+    text-align: right;
 }
 
 div.value_cell {
-    justify-content:flex-start;
+    justify-content: flex-start;
     font-weight: bold;
     margin-left: 3px;
     padding-left: 5px;
@@ -73,7 +78,7 @@ div.value_cell {
 }
 
 div#value_cell_players_active_nicks {
-    word-break : break-word;
+    word-break: break-word;
     overflow: hidden;
 }
 
@@ -99,12 +104,12 @@ div > button {
 }
 
 div > button:hover {
-    box-shadow: 4px 9px 35px -5px rgba(0,0,0,0.75);
+    box-shadow: 4px 9px 35px -5px rgba(0, 0, 0, 0.75);
 }
 
 div > button:focus {
     background-color: rgba(255, 255, 255, 0.75);
-    outline:none;
+    outline: none;
     filter: blur(0.5px);
 }
 
@@ -117,12 +122,12 @@ div.mod_row li {
     list-style: none inside none;
     border-style: solid;
     border-width: 0 0 1px 0;
-    border-color: rgba(128,128,128,0.70);
+    border-color: rgba(128, 128, 128, 0.70);
     padding: 0.3em 0 0.3em 1em;
 }
 
 div.mod_row li:hover {
-    background-color: rgba(255, 255,255, 0.35);
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 div.mod_row span {
