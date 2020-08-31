@@ -15,10 +15,10 @@ img {
 
 .acrylic {
     box-shadow: 7px 11px 15px -6px rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     background-image: url("acryllicBg.png");
     background-repeat: repeat;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 div.top {

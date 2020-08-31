@@ -18,7 +18,7 @@ function updateStatus(status) {
     const serverName = document.getElementById('server_name');
     serverName.innerText = "Forge minecraft server";
     document.getElementById('title_text_status').innerText = 'Server status:';
-    document.getElementById('value_text_status').innerText = (status.online) ? 'online' : 'ofline';
+    document.getElementById('value_text_status').innerText = (status.online) ? 'online' : 'offline';
 
     document.getElementById('title_text_desc').innerText = 'Description:';
     document.getElementById('value_text_desc').innerText = status.description;
