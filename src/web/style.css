@@ -2,7 +2,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --font-color: white;
+        --font-color: black;
         --name-font-color:  rgb(255, 255, 182);
         --bg-img-url: url("bg.png");
         --arcylic-bg-color: rgba(255, 255, 255, 0.6);
