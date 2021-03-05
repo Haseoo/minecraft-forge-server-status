@@ -2,7 +2,8 @@ package com.github.haseoo.minecraft.statusapi.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.haseoo.minecraft.statusapi.utils.helpers.ForgePing;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,14 +14,12 @@ import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 
 @Configuration
+@ConfigurationProperties(prefix = "minecraftserver.configuration")
+@Setter
 public class BeanConfiguration {
-    @Value("${minecraftserver.configuration.timeout}")
     private int timeout;
-    @Value("${minecraftserver.configuration.host}")
     private String host;
-    @Value("${minecraftserver.configuration.port}")
     private int port;
-    @Value("${web.config.cors.allowedorigin}")
     private String allowedOrigin;
 
     @Bean

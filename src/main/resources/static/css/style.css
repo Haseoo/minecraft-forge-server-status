@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --font-color: black;
+        --name-font-color: rgb(255, 255, 182);
+        --bg-img-url: url("bg.png");
+        --arcylic-bg-color: rgba(255, 255, 255, 0.6);
+        --button-bg-color: rgba(255, 255, 255, 0.5);
+        --button-border-color: #BFC0C0;
+        --li-bg-color: rgba(128, 128, 128, 0.70);
+        --li-hover-bg-color: rgba(255, 255, 255, 0.35);
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --font-color: rgb(255, 255, 255);
+        --name-font-color: orange;
+        --bg-img-url: url("bg1.png");
+        --arcylic-bg-color: rgba(35, 35, 35, 0.6);
+        --button-bg-color: rgb(110, 110, 110);
+        --button-border-bg-color: #BFC0C0;
+        --li-bg-color: rgba(128, 128, 128, 0.70);
+        --li-hover-bg-color: rgba(158, 158, 158, 0.671);
+    }
+}
+
+main {
+    max-width: 400px;
+    background-image: var(--bg-img-url);
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    font-family: 'Abel', sans-serif;
+    font-size: 11pt;
+    color: var(--font-color);
+}
+
+img {
+    box-shadow: 7px 11px 15px -6px rgba(0, 0, 0, 0.75);
+}
+
+.acrylic {
+    box-shadow: 7px 11px 15px -6px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    background-image: url("acryllicBg.png");
+    background-repeat: repeat;
+    background-color: var(--arcylic-bg-color);
+}
+
+div.top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+div.icon_container {
+    margin: 7px;
+    width: fit-content;
+    height: fit-content;
+}
+
+div.table {
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+div.name_container {
+    word-wrap: break-word;
+    width: 100%;
+    font-size: 24pt;
+    color: var(--name-font-color);
+    text-shadow: 2px 2px 5px rgb(29, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.row {
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+div.title_cell, div.value_cell {
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+
+div.title_cell {
+    justify-content: flex-end;
+    margin-right: 3px;
+    padding-right: 5px;
+    text-align: right;
+}
+
+div.value_cell {
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-left: 3px;
+    padding-left: 5px;
+    text-align: left;
+}
+
+div#value_cell_players_active_nicks {
+    word-break: break-word;
+    overflow: hidden;
+}
+
+div.mod_row {
+    margin: 10px 0 5px 0;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+div.button_wrapper {
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div > button {
+    color: var(--font-color);
+    background-color: var(--button-bg-color);
+    padding: 5px;
+    border: 1px solid var(--button-border-color);
+    box-sizing: content-box;
+}
+
+div > button:hover {
+    box-shadow: 4px 9px 35px -5px rgba(0, 0, 0, 0.75);
+}
+
+div > button:focus {
+    outline: none;
+}
+
+div.mod_row ul {
+    margin: 0;
+    padding: 0.5em;
+}
+
+div.mod_row li {
+    list-style: none inside none;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: var(--li-bg-color);
+    padding: 0.3em 0 0.3em 1em;
+}
+
+div.mod_row li:hover {
+    background-color: var(--li-hover-bg-color);
+}
+
+div.mod_row span {
+    font-size: 13pt;
+    font-weight: bold;
+    margin-left: 0.5em;
+}

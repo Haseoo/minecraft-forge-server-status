@@ -2,38 +2,44 @@ package com.github.haseoo.minecraft.statusapi.controllers;
 
 import com.github.haseoo.minecraft.statusapi.exceptions.MinecraftEntityNotFound;
 import com.github.haseoo.minecraft.statusapi.services.ServerStatusService;
+import com.github.haseoo.minecraft.statusapi.views.AbstractResponse;
 import com.github.haseoo.minecraft.statusapi.views.ErrorView;
 import com.github.haseoo.minecraft.statusapi.views.ServerInfoView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-@Controller
-@RequestMapping("/")
+@RestController
+@RequestMapping("/api/")
 @RequiredArgsConstructor
-public class StatusController {
-
+public class StatusRestController {
     private final ServerStatusService serverStatusService;
     @Value("${minecraftserver.configuration.name}")
     private String serverName;
 
     @GetMapping
-    public String getStatus(Model model) throws IOException {
-        model.addAttribute("serverName", serverName);
+    public ResponseEntity<AbstractResponse> getServerInfo() throws IOException {
+        return getResponse(false);
+    }
+
+    @GetMapping("fixed")
+    public ResponseEntity<AbstractResponse> getServerInfoWithNormalizedFixedModList() throws IOException {
+        return getResponse(true);
+    }
+
+    private ResponseEntity<AbstractResponse> getResponse(boolean fix) throws IOException {
         try {
-            var status = ServerInfoView.from(serverName, serverStatusService.getServerStatus(true));
-            model.addAttribute("status", status);
+            return ResponseEntity.ok(ServerInfoView.from(serverName, serverStatusService.getServerStatus(fix)));
         } catch (UnknownHostException | SocketTimeoutException | ConnectException | MinecraftEntityNotFound e) {
-            model.addAttribute("error", ErrorView.formException(e));
+            return ResponseEntity.ok(ErrorView.formException(e));
         }
-        return "status";
     }
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft status</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<main>
+    <div class="top">
+        <div class="icon_container">
+            <img id="icon" alt="server icon" th:if="${status != null}" th:src="${status.icon}">
+        </div>
+        <div class="name_container">
+            <span style="text-align: center;" id="server_name" th:text="${serverName}"></span>
+        </div>
+    </div>
+
+    <div id="success_table" class="table" th:if="${status != null}">
+        <div class="row" id="row_status">
+            <div class="title_cell acrylic" id="title_cel_status">
+                <span class="title_text" id="title_text_status" th:text="'Server status:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_status">
+                <span class="value_text" id="value_text_status" th:text="'online'"></span>
+            </div>
+        </div>
+
+        <div class="row" id="row_desc">
+            <div class="title_cell acrylic" id="title_cel_desc">
+                <span class="title_text" id="title_text_desc" th:text="'Description:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_desc">
+                <span class="value_text" id="value_text_desc" th:text="${status.description}"></span>
+            </div>
+        </div>
+
+        <div class="row" id="row_version">
+            <div class="title_cell acrylic" id="title_cel_version">
+                <span class="title_text" id="title_text_version" th:text="'Server version:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_version">
+                <span class="value_text" id="value_text_version" th:text="${status.version}"></span>
+            </div>
+        </div>
+
+        <div class="row" id="row_players_active">
+            <div class="title_cell acrylic" id="title_cel_players_active">
+                <span class="title_text" id="title_text_players_active" th:text="'Players slots:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_players_active">
+                <span class="value_text" id="value_text_players_active"
+                      th:text="${status.onlinePlayersCount} + ' / ' + ${status.maxPlayers}"></span>
+            </div>
+        </div>
+
+        <div class="row" id="row_players_active_nicks">
+            <div class="title_cell acrylic" id="title_cel_players_active_nicks">
+                <span class="title_text" id="title_text_players_active_nicks" th:text="'Players online:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_players_active_nicks">
+                <span class="value_text" id="value_text_players_active_nicks"
+                      th:text="${#strings.listJoin(#messages.listMsg(status.onlinePlayers), ', ')}"></span>
+            </div>
+        </div>
+
+        <div class="mod_row acrylic" id='mod_row'>
+            <span class="title_text" th:text="'Mod list:'"></span>
+            <div class="button_wrapper" id="mods_btn_wrapper">
+                <button id="mods_btn" th:text="'Click to see mod list'" onclick="showMods(mods)"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="error_table" class="table" th:if="${error != null}">
+        <div class="row" id="row_status_error">
+            <div class="title_cell acrylic" id="title_cel_status_error">
+                <span class="title_text" id="title_text_status_error" th:text="'Server status:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_status_error">
+                <span class="value_text" id="value_text_status_error" th:text="'offline'"></span>
+            </div>
+        </div>
+
+        <div class="row" id="row_error_desc">
+            <div class="title_cell acrylic" id="title_cel_error_desc">
+                <span class="title_text" id="title_text_error_desc" th:text="'Description:'"></span>
+            </div>
+            <div class="value_cell acrylic" id="value_cell_error_desc">
+                <span class="value_text" id="value_text_error_desc" th:text="${error.description}"></span>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script type="text/javascript" th:src="@{/js/script.js}" th:inline="javascript"></script>
+<script th:inline="javascript" th:if="${status != null}">
+    /*<![CDATA[*/
+    const mods = [[${status.mods}]];
+    /*]]>*/
+</script>
+</body>
+</html>
+
