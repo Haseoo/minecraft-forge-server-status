@@ -70,7 +70,7 @@
         <div class="mod_row acrylic" id='mod_row'>
             <span class="title_text" th:text="'Mod list:'"></span>
             <div class="button_wrapper" id="mods_btn_wrapper">
-                <button id="mods_btn" th:text="'Click to see mod list'" onclick="showMods(mods)"></button>
+                <button id="mods_btn" th:text="'Click to see mod list'"></button>
             </div>
         </div>
     </div>
@@ -94,13 +94,11 @@
             </div>
         </div>
     </div>
-
 </main>
-<script type="text/javascript" th:src="@{/js/script.js}" th:inline="javascript"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 <script th:inline="javascript" th:if="${status != null}">
-    /*<![CDATA[*/
     const mods = [[${status.mods}]];
-    /*]]>*/
+    initModList(mods);
 </script>
 </body>
 </html>

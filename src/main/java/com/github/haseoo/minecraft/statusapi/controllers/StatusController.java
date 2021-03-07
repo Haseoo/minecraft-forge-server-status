@@ -1,6 +1,5 @@
 package com.github.haseoo.minecraft.statusapi.controllers;
 
-import com.github.haseoo.minecraft.statusapi.exceptions.MinecraftEntityNotFound;
 import com.github.haseoo.minecraft.statusapi.services.ServerStatusService;
 import com.github.haseoo.minecraft.statusapi.views.ErrorView;
 import com.github.haseoo.minecraft.statusapi.views.ServerInfoView;
@@ -11,10 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 
 @Controller
 @RequestMapping("/")
@@ -26,12 +21,12 @@ public class StatusController {
     private String serverName;
 
     @GetMapping
-    public String getStatus(Model model) throws IOException {
+    public String getStatus(Model model) {
         model.addAttribute("serverName", serverName);
         try {
             var status = ServerInfoView.from(serverName, serverStatusService.getServerStatus(true));
             model.addAttribute("status", status);
-        } catch (UnknownHostException | SocketTimeoutException | ConnectException | MinecraftEntityNotFound e) {
+        } catch (Exception e) {
             model.addAttribute("error", ErrorView.formException(e));
         }
         return "status";
