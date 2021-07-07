@@ -3,7 +3,7 @@
 @media (prefers-color-scheme: light) {
     :root {
         --font-color: black;
-        --name-font-color:  rgb(255, 255, 182);
+        --name-font-color: rgb(255, 255, 182);
         --bg-img-url: url("bg.png");
         --arcylic-bg-color: rgba(255, 255, 255, 0.6);
         --button-bg-color: rgba(255, 255, 255, 0.5);
@@ -72,7 +72,7 @@ div.name_container {
     word-wrap: break-word;
     width: 100%;
     font-size: 24pt;
-    color:var(--name-font-color);
+    color: var(--name-font-color);
     text-shadow: 2px 2px 5px rgb(29, 29, 29);
     display: flex;
     justify-content: center;

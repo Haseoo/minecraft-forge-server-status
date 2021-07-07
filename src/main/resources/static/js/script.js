@@ -6,9 +6,11 @@ const btnHideText = 'Hide list';
 function resizeFrame() {
     if (parent.length) {
         setTimeout(function () {
-            const parentFrame = parent.document.getElementById(window.name);
-            parentFrame.style.height = document.documentElement.offsetHeight + 'px';
-            parentFrame.style.width = document.documentElement.scrollWidth + 'px';
+            const updateMsg = {
+                "height": document.documentElement.offsetHeight + 'px',
+                "width": document.documentElement.scrollWidth + 'px'
+            };
+            parent.postMessage(updateMsg, '*');
         }, 10);
     }
 }
@@ -16,13 +18,17 @@ function resizeFrame() {
 function initModList(mods) {
     const ulNode = document.createElement('ul');
     ulNode.setAttribute('id', 'mod_list_ul');
-    mods.forEach(element => {
-        const liNode = document.createElement('li');
-        const textNode = document.createTextNode(element.id + ' : ' + element.version);
-        liNode.appendChild(textNode);
-        ulNode.appendChild(liNode);
-    });
-    document.getElementById('mods_btn').onclick = () => {showMods(ulNode)};
+    if (mods) {
+        mods.forEach(element => {
+            const liNode = document.createElement('li');
+            const textNode = document.createTextNode(element.id + ' : ' + element.version);
+            liNode.appendChild(textNode);
+            ulNode.appendChild(liNode);
+        });
+    }
+    document.getElementById('mods_btn').onclick = () => {
+        showMods(ulNode)
+    };
 }
 
 function showMods(ulNode) {

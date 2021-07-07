@@ -20,7 +20,7 @@ public class ServerStatusServiceImpl implements ServerStatusService {
     @Override
     public PingResponse getServerStatus(boolean normalize) throws IOException, MinecraftEntityNotFound {
         PingResponse pingResponse = serverStatusRepository.fetchServerInfo();
-        if (normalize) {
+        if (normalize && pingResponse.getForgeData() != null) {
             fixModList(pingResponse.getForgeData().getMods());
         }
         return pingResponse;

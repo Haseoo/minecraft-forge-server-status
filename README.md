@@ -1,5 +1,6 @@
-# Minecraft Forge server status
-A simple API and frontend that provides information about a Forge Minecraft server such as:
+# Minecraft (Forge) server status
+A simple API and frontend that provides information about a (Forge) Minecraft server such as:
+* **also works with vanilla Minecraft!**
 * online status,
 * description,
 * version,
@@ -26,12 +27,21 @@ The backend has two endpoints:
 * /api/ - server status without fixing mods version
 * /api/fixed - server status with fixing mods version
 
-I recommend putting the frontend in a separate directory on your webserver. You can put the status banner on your website using an iframe. The frame will adjust its width and height after fetching the data or pressing the mod list button. The important thing to notice is that the frame id and title must be identical, e.g.: \
+I recommend putting the frontend in a separate directory on your webserver.
+
+You can use the server-side frontend, e.g.:\
+```<iframe id="mcFrame" name="mcFrame" src="http://localhost:8080/" title="minecraft status"></iframe>```\
+You also need to define message event handler e.g.:
+```javascript
+window.addEventListener('message', function(event) {
+    var mcFrame = parent.document.getElementById('mcFrame');
+    mcFrame.style.height = event.data.height;
+    mcFrame.style.width = event.data.width;
+});
+```
+\
+(**DEPRICATED**) You can put the status banner on your website using an iframe. The frame will adjust its width and height after fetching the data or pressing the mod list button. The important thing to notice is that the frame id and title must be identical, e.g.: \
 ```<iframe id="mcFrame" name="mcFrame" src="minecraft/index.html" title="minecraft status"></iframe>```
-
-You can also use the server-side frontend, e.g.:\
-```<iframe id="mcFrame" name="mcFrame" src="http://localhost:8080/" title="minecraft status"></iframe>```
-
 # How it works
 For the backend, I use java and spring. The backend pings the server using raw sockets. Then it parses received JSON and converts it to the form I find more useful. Unfortunately, sometimes mods versions are reported as "version" or "ANY" string. I fix that by replacing the string with more useful information.
 The frontend is written pure html5, css3, and javascript. It's intended to be used in an iframe. It presents the best on the Chromium-based browser. On Firefox, the background behind fields is not blurry but despite this, it still looks nice.
