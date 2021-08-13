@@ -63,7 +63,7 @@
             </div>
             <div class="value_cell acrylic" id="value_cell_players_active_nicks">
                 <span class="value_text" id="value_text_players_active_nicks"
-                      th:text="${#strings.listJoin(#messages.listMsg(status.onlinePlayers), ', ')}"></span>
+                      th:text="${#strings.listJoin(status.onlinePlayers, ', ')}"></span>
             </div>
         </div>
 
