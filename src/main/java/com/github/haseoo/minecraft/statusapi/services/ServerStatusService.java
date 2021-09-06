@@ -6,5 +6,5 @@ import com.github.haseoo.minecraft.statusapi.models.PingResponse;
 import java.io.IOException;
 
 public interface ServerStatusService {
-    PingResponse getServerStatus(boolean normalize) throws IOException, MinecraftEntityNotFound;
+    PingResponse getServerStatus(String hostName, int port, boolean normalize) throws IOException, MinecraftEntityNotFound;
 }

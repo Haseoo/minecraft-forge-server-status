@@ -10,10 +10,18 @@ A simple API and frontend that provides information about a (Forge) Minecraft se
 * server icon.
 
 I've recently started hosting a Forge Minecraft server to play with my friends. I find it helpful to be able to check on my mobile, e.g, who's currently playing. I decided to make a simple web app with server info. The existing API's were, at least, unsatisfying for me. So I decided to make one myself. 
- \
-The backend is located in `src/main`, the frontend in `src/main`.
+
 
 #UPDATE
+
+Now you can ping any server you want! Just add host, port params and name (only GUI) params to url. For example: \
+`http://localhost:8080/?host=mc.server&port=2137&serverName=McName` \
+`http://localhost:8080/api/?host=mc.server&port=2137` \
+Defaults are:
+- host = localhost
+- port = 25565
+- name = A minecraft server
+
 The status REST endpoints have been moved `/` -> `/api` and `/fixed` -> `/api/fixed`!
 \
 Moreover, I've implemented a server-side frontend version that is available under `/`. This version uses the Thymeleaf template engine.

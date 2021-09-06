@@ -5,6 +5,7 @@ import com.github.haseoo.minecraft.statusapi.exceptions.InvalidPacketIdException
 import lombok.RequiredArgsConstructor;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -15,11 +16,11 @@ import static com.github.haseoo.minecraft.statusapi.utils.ServerConnectionUtils.
 @RequiredArgsConstructor
 public class ForgePing {
 
-    private final InetSocketAddress host;
     private final int timeout;
 
 
-    public String ping() throws IOException {
+    public String ping(String hostName, int port) throws IOException {
+        var host = new InetSocketAddress(InetAddress.getByName(hostName), port);
         try (Socket socket = new Socket()) {
             socket.connect(host, timeout);
             try (
@@ -28,7 +29,7 @@ public class ForgePing {
                     var inputStream = socket.getInputStream();
                     var dataInputStream = new DataInputStream(inputStream)
             ) {
-                doHandshake(dataOutputStream);
+                doHandshake(dataOutputStream, host);
 
                 int pingResponseId = doPing(dataOutputStream, dataInputStream);
                 verifyPingResponse(pingResponseId);
@@ -42,13 +43,13 @@ public class ForgePing {
         }
     }
 
-    private void doHandshake(DataOutputStream dataOutputStream) throws IOException {
-        var handshake = prepareHandshakePacket();
+    private void doHandshake(DataOutputStream dataOutputStream, InetSocketAddress host) throws IOException {
+        var handshake = prepareHandshakePacket(host);
         writeIntValue(dataOutputStream, handshake.length);
         dataOutputStream.write(handshake);
     }
 
-    private byte[] prepareHandshakePacket() throws IOException {
+    private byte[] prepareHandshakePacket(InetSocketAddress host) throws IOException {
         var handshakeByteBuffer = new ByteArrayOutputStream();
         var handshakeData = new DataOutputStream(handshakeByteBuffer);
         handshakeData.writeByte(HANDSHAKE_PACKET_ID);

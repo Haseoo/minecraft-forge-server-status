@@ -10,11 +10,11 @@ import java.io.IOException;
 
 @Repository
 @AllArgsConstructor
-public class ServerStatusRepositoryImpl implements ServerStatusRepository {
+class ServerStatusRepositoryImpl implements ServerStatusRepository {
     private final ForgePing helper;
     private final ObjectMapper mapper;
 
-    public PingResponse fetchServerInfo() throws IOException {
-        return mapper.readValue(helper.ping(), PingResponse.class);
+    public PingResponse fetchServerInfo(String hostName, int port) throws IOException {
+        return mapper.readValue(helper.ping(hostName, port), PingResponse.class);
     }
 }

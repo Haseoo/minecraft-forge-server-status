@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Value
 @SuperBuilder
 public class ServerInfoView extends AbstractResponse {
-    String serverName;
     String icon;
     String version;
     Integer onlinePlayersCount;
@@ -22,11 +21,10 @@ public class ServerInfoView extends AbstractResponse {
     List<ModInfoView> mods;
 
 
-    public static ServerInfoView from(String serverName, PingResponse pingResponse) {
+    public static ServerInfoView from(PingResponse pingResponse) {
         var builder = ServerInfoView.builder()
                 .online(true)
                 .description(pingResponse.getDescription().getDescriptionText())
-                .serverName(serverName)
                 .icon(pingResponse.getFavicon())
                 .version(pingResponse.getVersionInfo().getVersion())
                 .onlinePlayersCount(pingResponse.getPlayersInfo().getOnline())
